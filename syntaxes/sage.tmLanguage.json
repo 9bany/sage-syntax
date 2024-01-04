@@ -11,10 +11,24 @@
 	],
 	"repository": {
 		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.sage",
-				"match": "\\b(if|while|for|return|def)\\b"
-			}]
+			"patterns": [
+				{
+					"name": "keyword.control.sage",
+					"match": "\\b(if|while|for|retur)\\b"
+				},
+				{
+					"name": "keyword.control.def.sage",
+					"match": "\\bdef\\b"
+				},
+				{
+					"name": "keyword.control.mut.sage",
+					"match": "\\bmut\\b"
+				},
+				{
+					"name": "keyword.control.let.sage",
+					"match": "\\blet\\b"
+				}
+			]
 		},
 		"strings": {
 			"name": "string.quoted.double.sage",
