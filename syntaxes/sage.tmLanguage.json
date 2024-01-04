@@ -13,7 +13,7 @@
 		"keywords": {
 			"patterns": [{
 				"name": "keyword.control.sage",
-				"match": "\\b(if|while|for|return)\\b"
+				"match": "\\b(if|while|for|return|def)\\b"
 			}]
 		},
 		"strings": {
@@ -28,5 +28,5 @@
 			]
 		}
 	},
-	"scopeName": "main"
+	"scopeName": "source.sg"
 }

@@ -13,12 +13,12 @@
     "languages": [{
       "id": "sage",
       "aliases": ["sage", "sage"],
-      "extensions": ["sg"],
+      "extensions": [".sg"],
       "configuration": "./language-configuration.json"
     }],
     "grammars": [{
       "language": "sage",
-      "scopeName": "main",
+      "scopeName": "source.sg",
       "path": "./syntaxes/sage.tmLanguage.json"
     }]
   }
