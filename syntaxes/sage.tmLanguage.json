@@ -1,46 +1,183 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "sage",
+	"scopeName": "source.sg",
 	"patterns": [
-		{
-			"include": "#keywords"
-		},
-		{
-			"include": "#strings"
-		}
-	],
-	"repository": {
-		"keywords": {
-			"patterns": [
+        {
+            "include": "#comments"
+        },
+        {
+            "include": "#keywords"
+        },
+        {
+            "include": "#strings"
+        }
+    ],
+    "repository": {
+        "comments": {
+            "patterns": [
+                {
+                    "comment": "line comments",
+                    "name": "comment.line.double-slash.sage",
+                    "match": "\\s*//.*"
+                }
+            ]
+        },
+        "keywords": {
+            "patterns": [
+                {
+                    "comment": "control flow keywords",
+                    "name": "keyword.control.sage",
+                    "match": "\\b(while|if|else|end|for|match|return)\\b"
+                },
+                {
+                    "comment": "type keyword",
+                    "name": "keyword.declaration.type.sage storage.type.sage",
+                    "match": "\\b(type)\\b"
+                },
+                {
+                    "comment": "enum keyword",
+                    "name": "keyword.declaration.enum.sage storage.type.sage",
+                    "match": "\\b(enum)\\b"
+                },
+                {
+                    "comment": "struct keyword",
+                    "name": "keyword.declaration.struct.sage storage.type.sage",
+                    "match": "\\b(struct)\\b"
+                },
+                {
+                    "comment": "storage modifiers",
+                    "name": "storage.modifier.sage",
+                    "match": "\\b(static)\\b"
+                },
+                {
+                    "comment": "other keywords",
+                    "name": "keyword.other.sage",
+                    "match": "\\b(as|impl)\\b"
+                },
+                {
+                    "comment": "def",
+                    "name": "keyword.other.def.sage",
+                    "match": "\\bdef\\b"
+                },
+                {
+                    "comment": "mut",
+                    "name": "storage.modifier.mut.sage",
+                    "match": "\\bmut\\b"
+                },
 				{
-					"name": "keyword.control.sage",
-					"match": "\\b(if|while|for|retur)\\b"
-				},
-				{
-					"name": "keyword.control.def.sage",
-					"match": "\\bdef\\b"
-				},
-				{
-					"name": "keyword.control.mut.sage",
-					"match": "\\bmut\\b"
-				},
-				{
-					"name": "keyword.control.let.sage",
-					"match": "\\blet\\b"
-				}
-			]
-		},
-		"strings": {
-			"name": "string.quoted.double.sage",
-			"begin": "\"",
-			"end": "\"",
-			"patterns": [
-				{
-					"name": "constant.character.escape.sage",
-					"match": "\\\\."
-				}
-			]
-		}
-	},
-	"scopeName": "source.sg"
+                    "comment": "let",
+                    "name": "storage.modifier.let.sage",
+                    "match": "\\blet\\b"
+                },
+                {
+                    "comment": "let keyword",
+                    "name": "storage.modifier.sage",
+                    "match": "\\b(let)\\b"
+                },
+                {
+                    "comment": "logical operators",
+                    "name": "keyword.operator.logical.sage",
+                    "match": "(\\^|\\||\\|\\||&&|<<|>>|!)(?!=)"
+                },
+                {
+                    "comment": "logical AND, borrow references",
+                    "name": "keyword.operator.borrow.and.sage",
+                    "match": "&(?![&=])"
+                },
+                {
+                    "comment": "assignment operators",
+                    "name": "keyword.operator.assignment.sage",
+                    "match": "(\\+=|-=|\\*=|/=|%=|\\^=|&=|\\|=|<<=|>>=)"
+                },
+                {
+                    "comment": "single equal",
+                    "name": "keyword.operator.assignment.equal.sage",
+                    "match": "(?<![<>])=(?!=|>)"
+                },
+                {
+                    "comment": "comparison operators",
+                    "name": "keyword.operator.comparison.sage",
+                    "match": "(=(=)?(?!>)|!=|<=|(?<!=)>=)"
+                },
+                {
+                    "comment": "math operators",
+                    "name": "keyword.operator.math.sage",
+                    "match": "(([+%]|(\\*(?!\\w)))(?!=))|(-(?!>))|(/(?!/))"
+                },
+                {
+                    "comment": "less than, greater than (special case)",
+                    "match": "(?:\\b|(?:(\\))|(\\])|(\\})))[ \\t]+([<>])[ \\t]+(?:\\b|(?:(\\()|(\\[)|(\\{)))",
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.brackets.round.sage"
+                        },
+                        "2": {
+                            "name": "punctuation.brackets.square.sage"
+                        },
+                        "3": {
+                            "name": "punctuation.brackets.curly.sage"
+                        },
+                        "4": {
+                            "name": "keyword.operator.comparison.sage"
+                        },
+                        "5": {
+                            "name": "punctuation.brackets.round.sage"
+                        },
+                        "6": {
+                            "name": "punctuation.brackets.square.sage"
+                        },
+                        "7": {
+                            "name": "punctuation.brackets.curly.sage"
+                        }
+                    }
+                },
+                {
+                    "comment": "dereference asterisk",
+                    "match": "(\\*)(?=\\w+)",
+                    "captures": {
+                        "1": {
+                            "name": "keyword.operator.dereference.sage"
+                        }
+                    }
+                },
+                {
+                    "comment": "dot access",
+                    "name": "keyword.operator.access.dot.sage",
+                    "match": "\\.(?!\\.)"
+                }
+            ]
+        },
+        "strings": {
+            "patterns": [
+                {
+                    "comment": "double-quoted strings and byte strings",
+                    "name": "string.quoted.double.sage",
+                    "begin": "(b?)(\")",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "string.quoted.byte.raw.sage"
+                        },
+                        "2": {
+                            "name": "punctuation.definition.string.sage"
+                        }
+                    },
+                    "end": "\"",
+                    "endCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.string.sage"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#escapes"
+                        },
+                        {
+                            "include": "#interpolations"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
 }
