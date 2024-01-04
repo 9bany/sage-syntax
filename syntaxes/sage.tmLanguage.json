@@ -153,27 +153,36 @@
                 {
                     "comment": "double-quoted strings and byte strings",
                     "name": "string.quoted.double.sage",
-                    "begin": "(b?)(\")",
+                    "begin": "\"",
+                    "end": "\"",
+                    "patterns": [
+                        {
+                            "name": "constant.character.escape.sage",
+                            "match": "\\\\."
+                        }
+                    ]
+                },
+                {
+                    "comment": "characters and bytes",
+                    "name": "string.quoted.single.char.sage",
+                    "begin": "(b)?(')",
                     "beginCaptures": {
                         "1": {
                             "name": "string.quoted.byte.raw.sage"
                         },
                         "2": {
-                            "name": "punctuation.definition.string.sage"
+                            "name": "punctuation.definition.char.sage"
                         }
                     },
-                    "end": "\"",
+                    "end": "'",
                     "endCaptures": {
                         "0": {
-                            "name": "punctuation.definition.string.sage"
+                            "name": "punctuation.definition.char.sage"
                         }
                     },
                     "patterns": [
                         {
                             "include": "#escapes"
-                        },
-                        {
-                            "include": "#interpolations"
                         }
                     ]
                 }
